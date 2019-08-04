@@ -8,9 +8,9 @@
   ],
   "build": {
     "appId": "io.${name}",
-    "productName": "${name}",
+    "productName": "Agenix",
     "copyright": "Copyright © 2019 ${author}",
-    "artifactName": "${os}-${name}-${version}-${arch}.${ext}",
+    "artifactName": "${os}-${productName}-${version}-${arch}.${ext}",
     "protocols": {
       "name": "electron-deep-linking",
       "schemes": [
