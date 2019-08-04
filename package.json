@@ -1,11 +1,48 @@
 {
   "name": "agenix",
   "description": "<your project description>",
-  "author": "<author of app>",
+  "author": "@bkawk",
+  "license": "MIT",
+  "keywords": [
+    "agenix"
+  ],
   "build": {
-    "appId": "<com.your_app>"
+    "appId": "io.${name}",
+    "productName": "${name}",
+    "copyright": "Copyright © 2019 ${author}",
+    "artifactName": "${os}-${name}-${version}-${arch}.${ext}",
+    "protocols": {
+      "name": "electron-deep-linking",
+      "schemes": [
+        "agenix"
+      ]
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "publish": {
+      "provider": "github"
+    },
+    "directories": {
+      "buildResources": "public/assets",
+      "output": "dist"
+    },
+    "dmg": {
+      "icon": "public/assets/icon.png",
+      "background": "public/assets/background.png",
+      "title": "${productName} ${version}",
+      "window": {
+        "width": 800,
+        "height": 600
+      }
+    }
   },
-  "main": "public/electron.js",
+  "engines": {
+    "node": ">= 10.14.2",
+    "yarn": ">= 1.15.2"
+  },
+  "main": "build/electron.js",
   "homepage": "./",
   "version": "0.1.0",
   "private": true,
@@ -51,5 +88,9 @@
     "electron": "^6.0.0",
     "electron-builder": "^21.2.0",
     "wait-on": "^3.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkawk/typescript-electron.git"
   }
 }
