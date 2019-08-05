@@ -7,47 +7,38 @@ const isDev = require("electron-is-dev");
 let mainWindow;
 
 function createWindow() {
-    mainWindow = new BrowserWindow({ width: 900, height: 680 });
+    mainWindow = new BrowserWindow({ width: 900, height: 680, title: 'Agenix' });
     mainWindow.loadURL(
     isDev
     ? "http://localhost:3000"
     : `file://${path.join(__dirname, "../build/index.html")}`
     );
-    mainWindow.on("closed", () => (mainWindow = null));
-}
-
-const quit = () => {
-	if(global && global.appShared && global.appShared.savingData){
-		setTimeout(() => {
-			quit();
-		}, 100);
-	} else {
-		if(global && global.appShared && global.appShared.QuitWatcher !== null)
-			global.appShared.QuitWatcher();
-		app.quit();
-	}
+    mainWindow.on("closed", () => app.quit());
 }
 
 const setupMenu = () => {
 	const menu = new Menu();
 	mainWindow.setMenu(menu);
 
-	const template = [{
+	const menuTemplate = [{
 		label: "Application",
 		submenu: [
 			{ label: "About Agenix", selector: "orderFrontStandardAboutPanel:" },
 			{ type: "separator" },
-			{ label: "Quit", accelerator: "Command+Q", click: () => { quit(); }}
+            { label: "Quit", accelerator: "CmdOrCtrl+Q", click: () => app.quit()}
 		]}
 	];
-	Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+    const mainMenu = Menu.buildFromTemplate(menuTemplate);
+    Menu.setApplicationMenu(mainMenu);
 };
 
 const startup = () => {
-    app.setAsDefaultProtocolClient('agenix'); // https://electronjs.org/docs/api/app#appsetasdefaultprotocolclientprotocol-path-args
+    app.setAsDefaultProtocolClient('agenix'); 
     createWindow();
     setupMenu();
 }
+// https://electronjs.org/docs/api/app#appsetasdefaultprotocolclientprotocol-path-args
+// https://medium.com/@jondot/shipping-electron-apps-to-mac-app-store-with-electron-builder-e960d46148ec
 
 app.on("ready", startup);
 app.on("window-all-closed", () => {
