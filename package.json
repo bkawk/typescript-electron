@@ -28,13 +28,20 @@
       "buildResources": "public/assets",
       "output": "dist"
     },
+    "mac": {
+      "target": ["dmg"],
+      "category": "public.app-category.developer-tools",
+      "darkModeSupport": true,
+      "icon": "public/assets/icon.png"
+    },
     "dmg": {
       "icon": "public/assets/icon.png",
       "background": "public/assets/background.png",
       "title": "${productName} ${version}",
+      "internetEnabled": true,
       "window": {
-        "width": 800,
-        "height": 600
+        "width": 540,
+        "height": 400
       }
     }
   },
