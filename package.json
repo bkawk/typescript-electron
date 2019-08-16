@@ -1,6 +1,6 @@
 {
   "name": "agenix",
-  "description": "<your project description>",
+  "description": "the description goes here",
   "author": "@bkawk",
   "license": "MIT",
   "keywords": [
@@ -13,9 +13,7 @@
     "artifactName": "${os}-${productName}-${version}-${arch}.${ext}",
     "protocols": {
       "name": "electron-deep-linking",
-      "schemes": [
-        "agenix"
-      ]
+      "schemes": ["agenix"]
     },
     "files": [
       "build/**/*",
@@ -29,7 +27,9 @@
       "output": "dist"
     },
     "mac": {
-      "target": ["dmg"],
+      "target": [
+        "dmg"
+      ],
       "category": "public.app-category.developer-tools",
       "darkModeSupport": true,
       "icon": "public/assets/icon.png"
@@ -58,11 +58,16 @@
     "@types/node": "12.6.9",
     "@types/react": "16.8.24",
     "@types/react-dom": "16.8.5",
+    "@types/react-router-dom": "^4.3.4",
+    "@types/react-transition-group": "^4.2.2",
     "cross-env": "^5.2.0",
     "electron-is-dev": "^1.1.0",
+    "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "react-transition-group": "^4.2.2",
     "typescript": "3.5.3"
   },
   "scripts": {
@@ -92,7 +97,7 @@
   },
   "devDependencies": {
     "concurrently": "^4.1.1",
-    "electron": "^6.0.0",
+    "electron": "^6.0.2",
     "electron-builder": "^21.2.0",
     "wait-on": "^3.3.0"
   },
