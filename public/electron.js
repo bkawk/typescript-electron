@@ -1,11 +1,12 @@
 const electron = require("electron");
-const {remote, app, BrowserWindow, Tray, Menu, MenuItem, ipcMain} = electron;
+const {app, BrowserWindow, Menu, systemPreferences} = electron;
 const path = require("path");
 const isDev = require("electron-is-dev");
 
 let mainWindow;
 
 function createWindow() {
+    
     mainWindow = new BrowserWindow({ 
         width: 900, 
         height: 680, 
@@ -21,6 +22,8 @@ function createWindow() {
     );
     mainWindow.openDevTools();
     mainWindow.on("closed", () => app.quit());
+
+    setupMenu();
 }
 
 const setupMenu = () => {
@@ -32,27 +35,22 @@ const setupMenu = () => {
 		submenu: [
 			{ label: "About Agenix", selector: "orderFrontStandardAboutPanel:" },
 			{ type: "separator" },
-            { label: "Quit", accelerator: "CmdOrCtrl+Q", click: () => app.quit()}
+            { label: "Quit", accelerator: "CmdOrCtrl+Q", click: () => app.quit()},
+            {label: 'Reload', accelerator: 'CmdOrCtrl+R', click (item, focusedWindow) {if (focusedWindow) focusedWindow.reload()}}
 		]}
 	];
     const mainMenu = Menu.buildFromTemplate(menuTemplate);
     Menu.setApplicationMenu(mainMenu);
 };
 
-const startup = () => {
-    global.appShared = "url";
-    app.setAsDefaultProtocolClient('agenix'); 
-    createWindow();
-    setupMenu();
-}
-
-app.on("ready", startup);
+app.on("ready", createWindow);
 app.on("window-all-closed", () => {
     if (process.platform !== "darwin") {
     app.quit();
 }
 });
 app.on("activate", () => {
+    app.setAsDefaultProtocolClient('agenix'); 
     if (mainWindow === null) {
     createWindow();
 }
@@ -72,8 +70,7 @@ app.on('open-url',  (event, url) => {
 })
 
 process.on('uncaughtException', (err) => {
-    mainWindow.webContents.send('error', {message:err.message, file:err.fileName, line:err.lineNumber});
-	console.error('There was an uncaught error', err)
+    logEverywhere(err);
 });
 
 function logEverywhere(s) {

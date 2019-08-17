@@ -8,13 +8,17 @@ const NotFound: React.FC = () => {
   
   return (    
 
-    <div className="home-grid page">
-      <div className="logo">
-        <h2 className="strapline">404 Page Not Found</h2>
+    <div className="not-found bg">
+      <div className="home-grid">
+        
+        <div className="logo">
+          <h2 className="strapline">404 Page Not Found</h2>
+        </div>
+        <footer className="footer">
+          © 2019 
+        </footer>
+
       </div>
-      <footer className="footer">
-        © 2019 
-      </footer>
     </div>
 
   );

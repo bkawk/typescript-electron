@@ -9,7 +9,7 @@ const Home: React.FC = () => {
   const { global, setGlobal } = useContext(Context) as {global: any; setGlobal: React.Dispatch<React.SetStateAction<any>>};
   const txt = translations[global.language];
   return (
-    <div className="home">
+    <div className="home bg">
       <div className="home-grid">
         
         <header className="left-logo">

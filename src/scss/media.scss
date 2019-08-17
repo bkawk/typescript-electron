@@ -1,0 +1,22 @@
+@media (prefers-color-scheme: light) {
+  html {
+      content: "light";
+      background: $agenixWhite;
+      color: $agenixDarkGrey;
+      .bg {
+        background: $agenixWhite;  
+      }
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+      content: "dark";
+      background: $agenixDarkGrey;
+      color: $agenixWhite;
+      .bg {
+        background: $agenixDarkGrey;
+      }
+  }
+}
