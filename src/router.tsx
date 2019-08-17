@@ -10,7 +10,10 @@ const electron = window.require('electron')
 const ipcRenderer = electron.ipcRenderer;
 
 const Router: React.FC = () => {
-  const [global, setGlobal] = useState();
+  const [global, setGlobal] = useState({
+    language: 'en',
+  });
+  
   ipcRenderer.on('deepLinkTo', (event:any, args:any) => {
     window.location.href = `/${args}`;
   })

@@ -45,9 +45,6 @@ const startup = () => {
     createWindow();
     setupMenu();
 }
-// https://electronjs.org/docs/api/app#appsetasdefaultprotocolclientprotocol-path-args
-// https://medium.com/@jondot/shipping-electron-apps-to-mac-app-store-with-electron-builder-e960d46148ec
-// https://github.com/oikonomopo/electron-deep-linking-mac-win
 
 app.on("ready", startup);
 app.on("window-all-closed", () => {
