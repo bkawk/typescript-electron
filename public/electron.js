@@ -35,8 +35,9 @@ const setupMenu = () => {
 		submenu: [
 			{ label: "About Agenix", selector: "orderFrontStandardAboutPanel:" },
 			{ type: "separator" },
-            { label: "Quit", accelerator: "CmdOrCtrl+Q", click: () => app.quit()},
-            {label: 'Reload', accelerator: 'CmdOrCtrl+R', click (item, focusedWindow) {if (focusedWindow) focusedWindow.reload()}}
+            { label: "Quit", accelerator: "CmdOrCtrl+Q", click: () => app.quit() },
+            { label: "Back", accelerator: "CmdOrCtrl+B", click: () => window.history.back() },
+            { label: 'Reload', accelerator: 'CmdOrCtrl+R', click (item, focusedWindow) {if (focusedWindow) focusedWindow.reload()} }
 		]}
 	];
     const mainMenu = Menu.buildFromTemplate(menuTemplate);
